@@ -1,0 +1,23 @@
+{
+  "name": "calscrape",
+  "version": "1.0.0",
+  "description": "scrapes wmc activity calendar",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@google-cloud/local-auth": "^3.0.1",
+    "apify": "^3.4.0",
+    "crawlee": "^3.13.0",
+    "googleapis": "^148.0.0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "vite": "^6.2.5"
+  }
+}
