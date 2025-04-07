@@ -15,6 +15,7 @@ const SCOPES = [
 // time.
 const TOKEN_PATH = path.join(process.cwd(), 'token.json');
 const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
+const CALENDAR_ID = "009d4f099bab82adfebc3444353be8632dc4673fde366505adf5dd36fd35044e@group.calendar.google.com"
 
 /**
  * Reads previously authorized credentials from the save file.
@@ -74,12 +75,10 @@ async function authorize() {
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
 
-const CALENDAR_ID_1 = "service-account@wmc-climbing-calendar.iam.gserviceaccount.com"
-const CALENDAR_ID_2 = "009d4f099bab82adfebc3444353be8632dc4673fde366505adf5dd36fd35044e@group.calendar.google.com"
 async function listEvents(auth) {
   const calendar = google.calendar({version: 'v3', auth});
   const res = await calendar.events.list({ // insert
-    calendarId: CALENDAR_ID_2,
+    calendarId: CALENDAR_ID,
     timeMin: new Date().toISOString(),
     maxResults: 10,
     singleEvents: true,

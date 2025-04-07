@@ -1,4 +1,5 @@
-import { CheerioCrawler, Dataset, RequestQueue } from 'crawlee'
+import { CheerioCrawler, RequestQueue } from 'crawlee'
+import { log } from 'console'
 
 const mainCrawler = new CheerioCrawler({
   async requestHandler({ request, body, $, sendRequest }) {
@@ -67,39 +68,8 @@ const mainCrawler = new CheerioCrawler({
 
       await detailCrawler.run()
 
-      
-      // data extraction saving
-      await Dataset.pushData({
-        url: request.url, // the url to scrape
-        html: body, // a full copy of the page
-        events, // the data we gathered
-      })
-      
-
-      
-      events.forEach(async (event) => {
-        console.log('eventeventevent', event)
-        // const res = await sendRequest({
-        //   proxyUrl: 'https://www.googleapis.com/calendar/v3/calendars/calendarId/events',
-        //   method: 'POST',
-        //   body: event,
-        //   key: 'AIzaSyCMrQytlGXocAR5t0Pk5VcCUaBSEUB7PGg'
-        // })
-        await sendRequest('https://www.googleapis.com/calendar/v3/calendars/009d4f099bab82adfebc3444353be8632dc4673fde366505adf5dd36fd35044e@group.calendar.google.com/events', {
-          method: 'POST',
-          // calendarId: '009d4f099bab82adfebc3444353be8632dc4673fde366505adf5dd36fd35044e@group.calendar.google.com',
-          body: event,
-          // key: 'AIzaSyCMrQytlGXocAR5t0Pk5VcCUaBSEUB7PGg'
-        })
-      })
-
-
-
+      log('events!!', events)
     },
 })
 
-
-
 await mainCrawler.run(['https://www.wasatchmountainclub.org/calendar/2025/April'])
-
-console.log('========== CRAWL COMPLETE ==========')
